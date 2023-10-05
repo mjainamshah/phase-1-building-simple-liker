@@ -4,32 +4,32 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-const like = document.querySelector(".like-glyph"); 
+const likeglyph = document.querySelectorAll(".like-glyph");
 
-function likeCallBack(event){
+function likeCallback(event) {
   const heart = event.target;
-  mimicServerCall("SERVER REQUEST TEST")
-  .then(()=> {
-    if (heart.innerText === EMPTY_HEART) {
-      heart.innerText = FULL_HEART;
-      heart.className = ".activated-heart";
-    }
-    else {
-      heart.innerText = EMPTY_HEART;
-      heart.className = "";
-    }
-  })
-  .catch(error => {
-    const modal = document.querySelector("modal");
-    modal.className = "";
-    modal.innerText = error;
-    setTimeout(() => modal.className = "hidden", 3000);
+  mimicServerCall("testUrl")
+    .then(() => {
+      if ( heart.innerText === EMPTY_HEART) {
+        heart.innerText = FULL_HEART;
+        heart.className = "activated-heart";
+      } else {
+        heart.innerText = EMPTY_HEART;
+        heart.className = "";
+      }
+    })
+    .catch(error => {
+      const modal = document.getElementById("modal");
+      modal.className = "";
+      modal.innerText = error;
+      setTimeout(() =>  modal.className = "hidden", 3000);
     });
-  } 
-
-for (const glyph of like){
-  glyph.addEventListener("click", likeCallBack)
 }
+
+for (const glyph of likeglyph) {
+  glyph.addEventListener("click", likeCallback);
+}
+
 
 
 
